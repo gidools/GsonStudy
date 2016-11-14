@@ -63,6 +63,11 @@ public class MainFragment extends Fragment {
 		clickedOn(new ExposeFragment());
 	}
 
+	@OnClick(R.id.date_serializer)
+	public void dateSerializer() {
+		clickedOn(new DateSerializeFragment());
+	}
+
 	private void clickedOn(@NonNull Fragment fragment) {
 		final String tag = fragment.getClass().toString();
 		getActivity().getSupportFragmentManager()
