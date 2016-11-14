@@ -62,6 +62,7 @@ public class JsonObjectFragment extends Fragment {
 				.parse(gson.toJson(foo1List))
 				.getAsJsonArray();
 
+		// TODO : Server need "entities" as key of json string data
 		JsonObject jsonObject = new JsonObject();
 		jsonObject.add("entities", jsonArray); // Array entity
 		Log.i(TAG, "jsonObject string : " + jsonObject.toString());
