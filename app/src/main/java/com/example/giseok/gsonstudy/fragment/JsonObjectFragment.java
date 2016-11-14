@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.giseok.gsonstudy.Foo1;
 import com.example.giseok.gsonstudy.R;
@@ -18,11 +19,15 @@ import com.google.gson.JsonParser;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class JsonObjectFragment extends Fragment {
 
 	private static final String TAG = JsonObjectFragment.class.getSimpleName();
+
+	@Bind(R.id.title_text)
+	TextView textView;
 
 	public JsonObjectFragment() {
 		// Required empty public constructor
@@ -39,6 +44,7 @@ public class JsonObjectFragment extends Fragment {
 	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 		ButterKnife.bind(this, view);
+		textView.setText("JsonObject sample");
 		gsonTest();
 	}
 

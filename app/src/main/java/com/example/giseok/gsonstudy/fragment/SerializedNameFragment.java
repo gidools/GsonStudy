@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.giseok.gsonstudy.Foo4;
 import com.example.giseok.gsonstudy.Foo5;
@@ -31,11 +32,15 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class SerializedNameFragment extends Fragment {
 
 	private static final String TAG = SerializedNameFragment.class.getSimpleName();
+
+	@Bind(R.id.title_text)
+	TextView textView;
 
 	public SerializedNameFragment() {
 		// Required empty public constructor
@@ -52,6 +57,7 @@ public class SerializedNameFragment extends Fragment {
 	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 		ButterKnife.bind(this, view);
+		textView.setText("SerializedName example");
 		gsonTest();
 	}
 

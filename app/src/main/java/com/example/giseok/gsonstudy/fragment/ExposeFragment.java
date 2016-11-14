@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.giseok.gsonstudy.Foo1;
 import com.example.giseok.gsonstudy.Foo2;
@@ -20,11 +21,15 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class ExposeFragment extends Fragment {
 
 	private static final String TAG = ExposeFragment.class.getSimpleName();
+
+	@Bind(R.id.title_text)
+	TextView textView;
 
 	public ExposeFragment() {
 		// Required empty public constructor
@@ -41,6 +46,8 @@ public class ExposeFragment extends Fragment {
 	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 		ButterKnife.bind(this, view);
+
+		textView.setText("Expose annotation example");
 		gsonTest();
 	}
 

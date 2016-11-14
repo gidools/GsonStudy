@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.giseok.gsonstudy.Foo1;
 import com.example.giseok.gsonstudy.R;
@@ -18,9 +19,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class CollectionFragment extends Fragment {
+
+	@Bind(R.id.text_view)
+	TextView textView;
 
 	public CollectionFragment() {
 		// Required empty public constructor
@@ -30,7 +35,7 @@ public class CollectionFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 							 Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
-		return inflater.inflate(R.layout.fragment_basic, container, false);
+		return inflater.inflate(R.layout.fragment_collection, container, false);
 	}
 
 	@Override
@@ -50,10 +55,10 @@ public class CollectionFragment extends Fragment {
 	private static final String TAG = CollectionFragment.class.getSimpleName();
 
 	private void gsonTest() {
-		Gson gson = new Gson();
 
-		// Gson tutorial site bug fix
-		String [] desStringArray = gson.fromJson("[\"abc\"]", String[].class);
+		String result = "Serialization" + "\n\n";
+
+		Gson gson = new Gson();
 
 		List<Foo1> foo1List = new ArrayList<>();
 		foo1List.add(new Foo1());
@@ -61,7 +66,7 @@ public class CollectionFragment extends Fragment {
 		foo1List.add(new Foo1());
 
 		String jsonString = gson.toJson(foo1List);
-		Log.i(TAG, "JsonString : " + jsonString);
+		result += "gson.toJson(foo1List) => " + jsonString + "\n";
 
 		// Array type
 		Foo1 [] foo1Array = gson.fromJson("[{\"value1\":1,\"value2\":\"abc\"},{\"value1\":3,\"value2\":\"egf\"},{\"value1\":4,\"value2\":\"kkk\"}]", Foo1[].class);
@@ -70,6 +75,6 @@ public class CollectionFragment extends Fragment {
 		Type collectionType = new TypeToken<Collection<Foo1>>(){}.getType();
 		List<Foo1> foo1List2 = gson.fromJson("[{\"value1\":1,\"value2\":\"abc\"},{\"value1\":3,\"value2\":\"egf\"},{\"value1\":4,\"value2\":\"kkk\"}]", collectionType);
 
-		Log.i(TAG, "test end");
+		textView.setText(result);
 	}
 }

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.giseok.gsonstudy.Foo1;
 import com.example.giseok.gsonstudy.Foo3;
@@ -34,11 +35,15 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class DateSerializeFragment extends Fragment {
 
 	private static final String TAG = DateSerializeFragment.class.getSimpleName();
+
+	@Bind(R.id.title_text)
+	TextView textView;
 
 	public DateSerializeFragment() {
 		// Required empty public constructor
@@ -55,6 +60,7 @@ public class DateSerializeFragment extends Fragment {
 	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 		ButterKnife.bind(this, view);
+		textView.setText("Date serialize example");
 		gsonTest();
 	}
 
