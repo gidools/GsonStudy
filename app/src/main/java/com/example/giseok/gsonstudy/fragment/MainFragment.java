@@ -68,6 +68,11 @@ public class MainFragment extends Fragment {
 		clickedOn(new DateSerializeFragment());
 	}
 
+	@OnClick(R.id.serialized_name)
+	public void serializedName() {
+		clickedOn(new SerializedNameFragment());
+	}
+
 	private void clickedOn(@NonNull Fragment fragment) {
 		final String tag = fragment.getClass().toString();
 		getActivity().getSupportFragmentManager()
