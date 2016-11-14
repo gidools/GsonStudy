@@ -43,6 +43,11 @@ public class MainFragment extends Fragment {
 		clickedOn(new BasicFragment());
 	}
 
+	@OnClick(R.id.object_serialize)
+	public void objectSerialize() {
+		clickedOn(new ObjectSerializeFragment());
+	}
+
 	@OnClick(R.id.json_object)
 	public void jsonObject() {
 		clickedOn(new JsonObjectFragment());

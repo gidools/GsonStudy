@@ -11,20 +11,14 @@ import android.view.ViewGroup;
 import com.example.giseok.gsonstudy.Foo1;
 import com.example.giseok.gsonstudy.R;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.ButterKnife;
 
-public class JsonObjectFragment extends Fragment {
+public class ObjectSerializeFragment extends Fragment {
 
-	private static final String TAG = JsonObjectFragment.class.getSimpleName();
+	private static final String TAG = ObjectSerializeFragment.class.getSimpleName();
 
-	public JsonObjectFragment() {
+	public ObjectSerializeFragment() {
 		// Required empty public constructor
 	}
 
@@ -49,27 +43,15 @@ public class JsonObjectFragment extends Fragment {
 		ButterKnife.unbind(this);
 	}
 
+	//transient field exclude automatically
 	private void gsonTest() {
-		// JsonObject or JsonArray well fit to retrofit library
-		List<Foo1> foo1List = new ArrayList<>();
-		foo1List.add(new Foo1());
-		foo1List.add(new Foo1());
-		foo1List.add(new Foo1());
-
+		// Serialization
 		Gson gson = new Gson();
+		String jsonString = gson.toJson(new Foo1());
+		Log.i(TAG, "gson.toJson(new Foo1()) : " + jsonString);
 
-		JsonArray jsonArray = new JsonParser()
-				.parse(gson.toJson(foo1List))
-				.getAsJsonArray();
-
-		JsonObject jsonObject = new JsonObject();
-		jsonObject.add("entities", jsonArray); // Array entity
-		Log.i(TAG, "jsonObject string : " + jsonObject.toString());
-
-		JsonObject jsonObject1 = new JsonObject();
-		jsonObject1.addProperty("userId", "Sunsiri");
-		jsonObject1.addProperty("Permission", "President");
-
-		Log.i(TAG, "jsonObject1 string : " + jsonObject1.toString());
+		Foo1 foo1 = gson.fromJson("{\"value1\":3,\"value2\":\"efg\",\"value3\":\"888\"}", Foo1.class);
+		Log.i(TAG, "Test end");
 	}
+
 }
