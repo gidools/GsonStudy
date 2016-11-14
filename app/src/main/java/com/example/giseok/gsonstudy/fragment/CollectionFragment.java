@@ -30,7 +30,7 @@ public class CollectionFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 							 Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
-		return inflater.inflate(R.layout.fragment_main, container, false);
+		return inflater.inflate(R.layout.fragment_basic, container, false);
 	}
 
 	@Override
@@ -51,8 +51,9 @@ public class CollectionFragment extends Fragment {
 
 	private void gsonTest() {
 		Gson gson = new Gson();
+
+		// Gson tutorial site bug fix
 		String [] desStringArray = gson.fromJson("[\"abc\"]", String[].class);
-		Log.i(TAG, "Test End");
 
 		List<Foo1> foo1List = new ArrayList<>();
 		foo1List.add(new Foo1());

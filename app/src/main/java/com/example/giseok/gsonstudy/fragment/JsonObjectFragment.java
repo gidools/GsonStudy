@@ -63,6 +63,7 @@ public class JsonObjectFragment extends Fragment {
 				.getAsJsonArray();
 
 		// TODO : Server need "entities" as key of json string data
+		// Reference site : https://docs.google.com/document/d/1qTgjdPHP2mZCMvZbZlR6JspPUW2XrZ3elI97qLKplTk/edit
 		JsonObject jsonObject = new JsonObject();
 		jsonObject.add("entities", jsonArray); // Array entity
 		Log.i(TAG, "jsonObject string : " + jsonObject.toString());
