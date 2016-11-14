@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.giseok.gsonstudy.Foo4;
+import com.example.giseok.gsonstudy.Foo5;
 import com.example.giseok.gsonstudy.R;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -89,12 +90,23 @@ public class SerializedNameFragment extends Fragment {
 
 		String jsonString = gson.toJson(foo4List);
 
-		Log.i(TAG, "Json : " + jsonString);
+		Log.i(TAG, "List<Foo4> json : " + jsonString);
 
 		foo4List.clear();
 
 		Type collectionType = new TypeToken<Collection<Foo4>>(){}.getType();
 		foo4List = gson.fromJson(jsonString, collectionType);
+
+		Foo4[] foo4Array = gson.fromJson(jsonString, Foo4[].class);
+
+		Foo5 foo5 = new Foo5();
+		foo5.setFoo4List(foo4List);
+
+		jsonString = gson.toJson(foo5);
+		Log.i(TAG, "Foo5 Json : " + jsonString);
+
+		foo5 = gson.fromJson(jsonString, Foo5.class);
+
 		Log.i(TAG, "Test end");
 	}
 }

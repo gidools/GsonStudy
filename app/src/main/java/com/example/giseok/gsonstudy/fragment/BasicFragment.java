@@ -45,6 +45,8 @@ public class BasicFragment extends Fragment {
 	}
 
 	private void gsonTest() {
+		// TODO : First. Modify build.gradle
+
 		// Serialization
 		Gson gson = new Gson();
 		Log.i(TAG, "gson.toJson(1) : " + gson.toJson(1));
