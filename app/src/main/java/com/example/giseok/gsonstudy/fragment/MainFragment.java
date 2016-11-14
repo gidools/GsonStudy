@@ -58,6 +58,11 @@ public class MainFragment extends Fragment {
 		clickedOn(new CollectionFragment());
 	}
 
+	@OnClick(R.id.expose)
+	public void expose() {
+		clickedOn(new ExposeFragment());
+	}
+
 	private void clickedOn(@NonNull Fragment fragment) {
 		final String tag = fragment.getClass().toString();
 		getActivity().getSupportFragmentManager()
