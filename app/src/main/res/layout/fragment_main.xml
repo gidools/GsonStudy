@@ -1,0 +1,50 @@
+<ScrollView
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	>
+
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+				  xmlns:tools="http://schemas.android.com/tools"
+				  android:layout_width="match_parent"
+				  android:layout_height="match_parent"
+				  android:gravity="center_horizontal"
+				  android:orientation="vertical">
+
+		<Button
+			android:id="@+id/basic"
+			android:layout_width="250dp"
+			android:layout_height="wrap_content"
+			android:text="Basic"
+			android:textSize="15sp"/>
+
+		<Button
+			android:id="@+id/json_object"
+			android:layout_width="250dp"
+			android:layout_height="wrap_content"
+			android:text="Json Object"
+			android:textSize="15sp"/>
+
+		<Button
+			android:id="@+id/collection"
+			android:layout_width="250dp"
+			android:layout_height="wrap_content"
+			android:text="Collection"
+			android:textSize="15sp"/>
+
+		<Button
+			android:id="@+id/date_serializer"
+			android:layout_width="250dp"
+			android:layout_height="wrap_content"
+			android:text="Date Serializer"
+			android:textSize="15sp"/>
+
+		<Button
+			android:id="@+id/date_deserializer"
+			android:layout_width="250dp"
+			android:layout_height="wrap_content"
+			android:text="Date Deserializer"
+			android:textSize="15sp"/>
+
+	</LinearLayout>
+</ScrollView>
