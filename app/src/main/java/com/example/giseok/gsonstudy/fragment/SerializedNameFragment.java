@@ -39,9 +39,6 @@ public class SerializedNameFragment extends Fragment {
 
 	private static final String TAG = SerializedNameFragment.class.getSimpleName();
 
-	@Bind(R.id.title_text)
-	TextView textView;
-
 	@Bind(R.id.text_view)
 	TextView textPanel;
 
@@ -60,7 +57,6 @@ public class SerializedNameFragment extends Fragment {
 	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 		ButterKnife.bind(this, view);
-		textView.setText("SerializedName example");
 		gsonTest();
 	}
 
@@ -72,25 +68,9 @@ public class SerializedNameFragment extends Fragment {
 	}
 
 	private void gsonTest() {
-		Gson gson = new GsonBuilder().registerTypeAdapter(Date.class, new JsonSerializer<Date>() {
-			@Override
-			public JsonElement serialize(Date src, Type typeOfSrc, JsonSerializationContext context) {
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", Locale.US);
-				return new JsonPrimitive(sdf.format(src));
-			}
-		}).registerTypeAdapter(Date.class, new JsonDeserializer<Date>() {
-			@Override
-			public Date deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", Locale.US);
-				Date date = null;
-				try {
-					date = sdf.parse(json.getAsString());
-				} catch (ParseException e) {
-					e.printStackTrace();
-				}
-				return date;
-			}
-		}).setPrettyPrinting().create();
+
+		Gson gson = new GsonBuilder().registerTypeAdapter(Date.class, new TypeAdapter()).
+				setPrettyPrinting().create();
 
 		List<Foo4> foo4List = new ArrayList<>();
 		foo4List.add(new Foo4());
@@ -105,18 +85,39 @@ public class SerializedNameFragment extends Fragment {
 		Type collectionType = new TypeToken<Collection<Foo4>>(){}.getType();
 		foo4List = gson.fromJson(jsonString, collectionType);
 
+		// Same function as TypeToken
 		Foo4[] foo4Array = gson.fromJson(jsonString, Foo4[].class);
 
 		Foo5 foo5 = new Foo5();
 		foo5.setFoo4List(foo4List);
 
 		jsonString = gson.toJson(foo5);
-		result += "\n" + "gson.toJson(foo5) =>" + "\n" + jsonString;
+		result += "\n\n" + "gson.toJson(foo5) =>" + "\n" + jsonString;
 
 		foo5 = gson.fromJson(jsonString, Foo5.class);
 
 		textPanel.setText(result);
+	}
 
-		Log.i(TAG, "Test end");
+	private static class TypeAdapter implements JsonSerializer<Date>, JsonDeserializer<Date> {
+
+		@Override
+		public Date deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", Locale.US);
+			Date date = null;
+			try {
+				date = sdf.parse(json.getAsString());
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			return date;
+
+		}
+
+		@Override
+		public JsonElement serialize(Date src, Type typeOfSrc, JsonSerializationContext context) {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", Locale.US);
+			return new JsonPrimitive(sdf.format(src));
+		}
 	}
 }
