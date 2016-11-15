@@ -45,6 +45,9 @@ public class DateSerializeFragment extends Fragment {
 	@Bind(R.id.title_text)
 	TextView textView;
 
+	@Bind(R.id.text_view)
+	TextView textPanel;
+
 	public DateSerializeFragment() {
 		// Required empty public constructor
 	}
@@ -92,7 +95,7 @@ public class DateSerializeFragment extends Fragment {
 				}
 				return date;
 			}
-		}).create();
+		}).setPrettyPrinting().create();
 
 		List<Foo3> foo3List = new ArrayList<>();
 
@@ -112,12 +115,10 @@ public class DateSerializeFragment extends Fragment {
 
 		String jsonString = gson.toJson(foo3List);
 
-		Log.i(TAG, "Json : " + jsonString);
+		textPanel.setText(jsonString);
 
-		foo3List.clear();
-
-		Type collectionType = new TypeToken<Collection<Foo3>>(){}.getType();
-		foo3List = gson.fromJson(jsonString, collectionType);
+//		Type collectionType = new TypeToken<Collection<Foo3>>(){}.getType();
+		Foo3[] foo3Array = gson.fromJson(jsonString, Foo3[].class);
 
 		Log.i(TAG, "Test end");
 	}

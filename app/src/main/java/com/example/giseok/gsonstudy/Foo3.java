@@ -10,8 +10,8 @@ import java.util.Date;
 
 public class Foo3 {
 
-	String email;
-	Date createDT;
+	private String email;
+	private Date createDT;
 
 	public Foo3() {
 		email = "susiri@bh.com";

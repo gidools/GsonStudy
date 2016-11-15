@@ -75,6 +75,7 @@ public class JsonObjectFragment extends Fragment {
 		Log.i(TAG, "jsonObject string : " + jsonObject.toString());
 
 		JsonObject jsonObject1 = new JsonObject();
+		jsonObject1.addProperty("entities", gson.toJson(foo1List));
 		jsonObject1.addProperty("userId", "Sunsiri");
 		jsonObject1.addProperty("Permission", "President");
 

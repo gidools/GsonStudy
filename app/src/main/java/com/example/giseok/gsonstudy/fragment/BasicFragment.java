@@ -69,7 +69,7 @@ public class BasicFragment extends Fragment {
 				"gson.fromJson(\"1\", Long.class)" + gson.fromJson("1", Long.class) + "\n" +
 				"gson.fromJson(\"false\", Boolean.class)" + gson.fromJson("false", Boolean.class) + "\n" +
 				"gson.fromJson(\"abc\", String.class)" + gson.fromJson("abc", String.class) + "\n" +
-				"gson.fromJson(\"[\"abc\"]\", String.class)" + gson.fromJson("[\"abc\"]", String.class) + "\n";
+				"gson.fromJson(\"[\"abc\"]\", String.class)" + gson.fromJson("[\"abc\"]", String[].class) + "\n";
 
 		textView.setText(result);
 

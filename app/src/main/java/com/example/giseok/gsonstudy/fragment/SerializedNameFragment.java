@@ -42,6 +42,9 @@ public class SerializedNameFragment extends Fragment {
 	@Bind(R.id.title_text)
 	TextView textView;
 
+	@Bind(R.id.text_view)
+	TextView textPanel;
+
 	public SerializedNameFragment() {
 		// Required empty public constructor
 	}
@@ -50,7 +53,7 @@ public class SerializedNameFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 							 Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
-		return inflater.inflate(R.layout.fragment_basic, container, false);
+		return inflater.inflate(R.layout.fragment_serialized_name, container, false);
 	}
 
 	@Override
@@ -87,7 +90,7 @@ public class SerializedNameFragment extends Fragment {
 				}
 				return date;
 			}
-		}).create();
+		}).setPrettyPrinting().create();
 
 		List<Foo4> foo4List = new ArrayList<>();
 		foo4List.add(new Foo4());
@@ -95,8 +98,7 @@ public class SerializedNameFragment extends Fragment {
 		foo4List.add(new Foo4());
 
 		String jsonString = gson.toJson(foo4List);
-
-		Log.i(TAG, "List<Foo4> json : " + jsonString);
+		String result = "gson.toJson(foo4List) => " + "\n" + jsonString;
 
 		foo4List.clear();
 
@@ -109,9 +111,11 @@ public class SerializedNameFragment extends Fragment {
 		foo5.setFoo4List(foo4List);
 
 		jsonString = gson.toJson(foo5);
-		Log.i(TAG, "Foo5 Json : " + jsonString);
+		result += "\n" + "gson.toJson(foo5) =>" + "\n" + jsonString;
 
 		foo5 = gson.fromJson(jsonString, Foo5.class);
+
+		textPanel.setText(result);
 
 		Log.i(TAG, "Test end");
 	}

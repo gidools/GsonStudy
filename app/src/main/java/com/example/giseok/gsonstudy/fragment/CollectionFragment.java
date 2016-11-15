@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.example.giseok.gsonstudy.Foo1;
 import com.example.giseok.gsonstudy.R;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
@@ -58,7 +59,7 @@ public class CollectionFragment extends Fragment {
 
 		String result = "Serialization" + "\n\n";
 
-		Gson gson = new Gson();
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
 		List<Foo1> foo1List = new ArrayList<>();
 		foo1List.add(new Foo1());
@@ -66,14 +67,24 @@ public class CollectionFragment extends Fragment {
 		foo1List.add(new Foo1());
 
 		String jsonString = gson.toJson(foo1List);
-		result += "gson.toJson(foo1List) => " + jsonString + "\n";
+		result += "gson.toJson(foo1List) => " + "\n" + jsonString + "\n";
 
 		// Array type
-		Foo1 [] foo1Array = gson.fromJson("[{\"value1\":1,\"value2\":\"abc\"},{\"value1\":3,\"value2\":\"egf\"},{\"value1\":4,\"value2\":\"kkk\"}]", Foo1[].class);
+		Foo1 [] foo1Array = gson.fromJson(
+				"[" +
+						"{\"value1\":1,\"value2\":\"abc\"}," +
+						"{\"value1\":3,\"value2\":\"egf\"}," +
+						"{\"value1\":4,\"value2\":\"kkk\"}]",
+				Foo1[].class);
 
 		// Collection type
 		Type collectionType = new TypeToken<Collection<Foo1>>(){}.getType();
-		List<Foo1> foo1List2 = gson.fromJson("[{\"value1\":1,\"value2\":\"abc\"},{\"value1\":3,\"value2\":\"egf\"},{\"value1\":4,\"value2\":\"kkk\"}]", collectionType);
+		List<Foo1> foo1List2 = gson.fromJson(
+				"[" +
+						"{\"value1\":1,\"value2\":\"abc\", \"value3\":4}," +
+						"{\"value1\":3,\"value2\":\"egf\", \"value3\":5}," +
+						"{\"value1\":4,\"value2\":\"kkk\", \"value3\":6}]",
+				collectionType);
 
 		textView.setText(result);
 	}
